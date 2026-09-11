@@ -1,2 +1,2 @@
 # SPANIJA-IBICA
-samo prave prie
+samo ispravna prica
