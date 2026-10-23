@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Španija – Ibica</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <a class="navbar__logo" href="#pocetna" aria-label="Španija Ibica – početna">
+        <img src="images/spain-logo.svg" alt="Logo Španije" width="72" height="48">
+      </a>
+
+      <button class="navbar__burger" type="button"
+              aria-label="Otvori meni" aria-expanded="false" aria-controls="navbar-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="navbar__menu" id="navbar-menu" aria-label="Glavna navigacija">
+        <ul class="navbar__list">
+          <li><a class="navbar__link" href="#pocetna">Početna</a></li>
+          <li><a class="navbar__link" href="#o-nama">O nama</a></li>
+          <li><a class="navbar__link" href="#kontakt">Kontakt</a></li>
+          <li><a class="navbar__link" href="#recenzije">Recenzije</a></li>
+          <li><a class="navbar__link" href="#login">LogIn</a></li>
+        </ul>
+
+        <a class="navbar__cta" href="https://www.booking.com" target="_blank" rel="noopener noreferrer">
+          Rezerviši
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Privremene sekcije samo da se vidi scroll i aktivni link; obriši ih kad dodaš pravi sadržaj -->
+  <main>
+    <section class="sekcija" id="pocetna"><h1>Početna</h1></section>
+    <section class="sekcija sekcija--alt" id="o-nama"><h2>O nama</h2></section>
+    <section class="sekcija" id="kontakt"><h2>Kontakt</h2></section>
+    <section class="sekcija sekcija--alt" id="recenzije"><h2>Recenzije</h2></section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

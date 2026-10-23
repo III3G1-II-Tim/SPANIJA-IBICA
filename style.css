@@ -1,0 +1,289 @@
+/* ==========================================================
+   Varijable
+   ========================================================== */
+:root {
+  --boja-akcent: #D5A572;
+  --boja-svetla: #DBE6E5;
+  --boja-siva: #676C6C;
+  --boja-teksta: #000000;
+
+  --visina-navbara: 80px;
+  --visina-navbara-mala: 64px;
+  --sirina-kontejnera: 1200px;
+  --prelaz: 0.25s ease;
+}
+
+/* ==========================================================
+   Osnova
+   ========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding-top: var(--visina-navbara);
+  font-family: "Fira Sans", sans-serif;
+  color: var(--boja-teksta);
+  background: #fff;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--boja-siva);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ==========================================================
+   Navbar
+   ========================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--visina-navbara);
+  background: var(--boja-svetla);
+  border-bottom: 2px solid var(--boja-akcent);
+  transition: height var(--prelaz), box-shadow var(--prelaz);
+}
+
+.navbar--scrolled {
+  height: var(--visina-navbara-mala);
+  box-shadow: 0 4px 16px rgba(103, 108, 108, 0.3);
+}
+
+.navbar__inner {
+  height: 100%;
+  max-width: var(--sirina-kontejnera);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ----- Logo (levo) ----- */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo img {
+  display: block;
+  height: 48px;
+  width: auto;
+  transition: height var(--prelaz);
+}
+
+.navbar--scrolled .navbar__logo img {
+  height: 40px;
+}
+
+/* ----- Meni (desno) ----- */
+.navbar__menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.navbar__link {
+  position: relative;
+  padding: 8px 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--boja-teksta);
+  text-decoration: none;
+}
+
+.navbar__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--boja-akcent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--prelaz);
+}
+
+.navbar__link:hover::after,
+.navbar__link:focus-visible::after,
+.navbar__link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* ----- Dugme Rezerviši (odvojeno) ----- */
+.navbar__cta {
+  position: relative;
+  margin-left: 48px;
+  padding: 10px 26px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--boja-teksta);
+  text-decoration: none;
+  background: var(--boja-akcent);
+  border: 2px solid var(--boja-akcent);
+  border-radius: 8px;
+  transition: background var(--prelaz), border-color var(--prelaz), color var(--prelaz);
+}
+
+/* tanka vertikalna linija koja vizuelno odvaja dugme */
+.navbar__cta::before {
+  content: "";
+  position: absolute;
+  left: -26px;
+  top: 50%;
+  width: 1px;
+  height: 24px;
+  background: var(--boja-siva);
+  opacity: 0.4;
+  transform: translateY(-50%);
+}
+
+.navbar__cta:hover,
+.navbar__cta:focus-visible {
+  background: var(--boja-siva);
+  border-color: var(--boja-siva);
+  color: #fff;
+}
+
+/* ----- Hamburger (samo mobilni) ----- */
+.navbar__burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.navbar__burger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--boja-teksta);
+  border-radius: 2px;
+  transition: transform var(--prelaz), opacity var(--prelaz);
+}
+
+.navbar__burger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar__burger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__burger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ==========================================================
+   Mobilni
+   ========================================================== */
+@media (max-width: 900px) {
+  .navbar__inner {
+    padding: 0 16px;
+  }
+
+  .navbar__burger {
+    display: flex;
+  }
+
+  .navbar__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    padding: 24px 16px 28px;
+    background: var(--boja-svetla);
+    border-bottom: 2px solid var(--boja-akcent);
+    box-shadow: 0 8px 16px rgba(103, 108, 108, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--prelaz), transform var(--prelaz), visibility var(--prelaz);
+  }
+
+  .navbar__menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .navbar__list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .navbar__link {
+    font-size: 19px;
+  }
+
+  .navbar__cta {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .navbar__cta::before {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   Privremene sekcije (obriši kad dodaš pravi sadržaj)
+   ========================================================== */
+.sekcija {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 48px 24px;
+  scroll-margin-top: var(--visina-navbara-mala);
+}
+
+.sekcija--alt {
+  background: var(--boja-svetla);
+}
+
+/* ==========================================================
+   Manje animacija ako korisnik tako želi
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
