@@ -7,10 +7,22 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Ikonice (koriste se preko <use>) -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-provod" viewBox="0 0 24 24"><path d="M4 4h16l-8 9z"/><path d="M12 13v7M8 20h8"/><path d="M15.5 2.5l-2 3"/></symbol>
+    <symbol id="i-odmor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-turizam" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+    <symbol id="i-okreni" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-tel" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-lokacija" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8"/></symbol>
+  </svg>
 
   <!-- ===== NAVBAR ===== -->
   <header class="navbar" id="navbar">
@@ -44,13 +56,155 @@
     </div>
   </header>
 
-  <!-- Privremene sekcije samo da se vidi scroll i aktivni link; obriši ih kad dodaš pravi sadržaj -->
   <main>
-    <section class="sekcija" id="pocetna"><h1>Početna</h1></section>
+
+    <!-- ===== HERO / POČETNA =====
+         Slika plaže: ubaci fajl u folder images/ i nazovi ga hero-beach.jpg
+         (radi i .jpeg, .png, .webp). Kod ne moraš da menjaš. -->
+    <section class="hero" id="pocetna" aria-labelledby="hero-naslov">
+
+      <div class="hero__content">
+        <h1 class="hero__title" id="hero-naslov">Welcome To Ibiza</h1>
+        <p class="hero__subtitle">Žurka, odmor ili obilazak – izaberi svoju Ibicu.</p>
+      </div>
+
+      <ul class="cards">
+
+        <li>
+          <button class="card card--sand" type="button" aria-pressed="false">
+            <span class="card__inner">
+              <span class="card__face card__face--front">
+                <span class="card__badge">
+                  <svg class="icon" aria-hidden="true"><use href="#i-provod"/></svg>
+                </span>
+                <span class="card__title">Provod</span>
+                <span class="card__hint">
+                  <svg class="icon" aria-hidden="true"><use href="#i-okreni"/></svg>
+                  Okreni
+                </span>
+              </span>
+              <span class="card__face card__face--back" aria-hidden="true">
+                <span class="card__title">Provod</span>
+                <span class="card__text">
+                  Klubovi poznati u celom svetu, DJ setovi na plaži i noći koje traju do jutra.
+                </span>
+                <svg class="icon card__watermark" aria-hidden="true"><use href="#i-provod"/></svg>
+              </span>
+            </span>
+          </button>
+        </li>
+
+        <li>
+          <button class="card card--sea" type="button" aria-pressed="false">
+            <span class="card__inner">
+              <span class="card__face card__face--front">
+                <span class="card__badge">
+                  <svg class="icon" aria-hidden="true"><use href="#i-odmor"/></svg>
+                </span>
+                <span class="card__title">Odmor</span>
+                <span class="card__hint">
+                  <svg class="icon" aria-hidden="true"><use href="#i-okreni"/></svg>
+                  Okreni
+                </span>
+              </span>
+              <span class="card__face card__face--back" aria-hidden="true">
+                <span class="card__title">Odmor</span>
+                <span class="card__text">
+                  Mirne uvale, bistro more i beach barovi gde se zalazak sunca gleda bez žurbe.
+                </span>
+                <svg class="icon card__watermark" aria-hidden="true"><use href="#i-odmor"/></svg>
+              </span>
+            </span>
+          </button>
+        </li>
+
+        <li>
+          <button class="card card--sand" type="button" aria-pressed="false">
+            <span class="card__inner">
+              <span class="card__face card__face--front">
+                <span class="card__badge">
+                  <svg class="icon" aria-hidden="true"><use href="#i-turizam"/></svg>
+                </span>
+                <span class="card__title">Turizam</span>
+                <span class="card__hint">
+                  <svg class="icon" aria-hidden="true"><use href="#i-okreni"/></svg>
+                  Okreni
+                </span>
+              </span>
+              <span class="card__face card__face--back" aria-hidden="true">
+                <span class="card__title">Turizam</span>
+                <span class="card__text">
+                  Dalt Vila, stari grad pod zaštitom UNESCO-a, pijace, ribarska sela i staze kroz borove šume.
+                </span>
+                <svg class="icon card__watermark" aria-hidden="true"><use href="#i-turizam"/></svg>
+              </span>
+            </span>
+          </button>
+        </li>
+
+      </ul>
+
+      <a class="hero__cta" href="https://www.booking.com" target="_blank" rel="noopener noreferrer">
+        Rezerviši
+      </a>
+
+      <svg class="hero__wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 44C220 92 460 4 720 42S1210 84 1440 30V80H0Z"/>
+      </svg>
+
+    </section>
+
+    <!-- Privremene sekcije; obriši ih kad dodaš pravi sadržaj -->
     <section class="sekcija sekcija--alt" id="o-nama"><h2>O nama</h2></section>
-    <section class="sekcija" id="kontakt"><h2>Kontakt</h2></section>
-    <section class="sekcija sekcija--alt" id="recenzije"><h2>Recenzije</h2></section>
+    <section class="sekcija" id="recenzije"><h2>Recenzije</h2></section>
+
   </main>
+
+  <!-- ===== FOOTER / KONTAKT ===== -->
+  <footer class="footer" id="kontakt">
+    <div class="footer__inner">
+
+      <div class="footer__brand">
+        <img src="images/spain-logo.svg" alt="Logo Španije" width="72" height="48">
+        <p>Tvoja agencija za putovanje na Ibicu. Smeštaj, prevoz i saveti za svaki tip odmora.</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Stranice">
+        <h2 class="footer__heading">Stranice</h2>
+        <ul class="footer__links">
+          <li><a href="#pocetna">Početna</a></li>
+          <li><a href="#o-nama">O nama</a></li>
+          <li><a href="#recenzije">Recenzije</a></li>
+          <li><a href="#login">LogIn</a></li>
+        </ul>
+      </nav>
+
+      <address class="footer__col">
+        <h2 class="footer__heading">Kontakt</h2>
+        <ul class="footer__contact">
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+            <a href="mailto:info@ibiza-agencija.com">info@ibiza-agencija.com</a>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-tel"/></svg></span>
+            <a href="tel:+381601234567">+381 60 123 4567</a>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-lokacija"/></svg></span>
+            <span>Ibiza, Španija</span>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-insta"/></svg></span>
+            <a href="https://www.instagram.com/ibiza_agencija" target="_blank" rel="noopener noreferrer">@ibiza_agencija</a>
+          </li>
+        </ul>
+      </address>
+
+    </div>
+
+    <p class="footer__copy">© <span id="godina">2026</span> Ibiza Agencija. Sva prava zadržana.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

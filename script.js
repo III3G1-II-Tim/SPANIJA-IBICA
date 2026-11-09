@@ -57,6 +57,9 @@
     })
     .filter(Boolean);
 
+  const jeDoDna = () =>
+    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
   const oznaciAktivan = (id) => {
     links.forEach((link) => {
       link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
@@ -66,6 +69,8 @@
   if ("IntersectionObserver" in window && sekcije.length) {
     const observer = new IntersectionObserver(
       (unosi) => {
+        // na dnu strane Kontakt ima prednost (vidi niže)
+        if (jeDoDna()) return;
         unosi.forEach((unos) => {
           if (unos.isIntersecting) oznaciAktivan(unos.target.id);
         });
@@ -76,4 +81,42 @@
 
     sekcije.forEach((sekcija) => observer.observe(sekcija));
   }
+
+  // footer je nizak i ne stigne do sredine ekrana, pa se Kontakt
+  // označava kad se strana skroluje do dna
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (jeDoDna()) oznaciAktivan("kontakt");
+    },
+    { passive: true }
+  );
+
+  /* ---------- Flip kartice ---------- */
+  document.querySelectorAll(".card").forEach((kartica) => {
+    const prednja = kartica.querySelector(".card__face--front");
+    const zadnja = kartica.querySelector(".card__face--back");
+
+    kartica.addEventListener("click", () => {
+      const okrenuta = kartica.classList.toggle("is-flipped");
+      kartica.setAttribute("aria-pressed", String(okrenuta));
+
+      // čitač ekrana čita samo stranu koja je trenutno vidljiva
+      prednja.setAttribute("aria-hidden", String(okrenuta));
+      zadnja.setAttribute("aria-hidden", String(!okrenuta));
+
+      // restart odskoka pri svakom okretanju
+      kartica.classList.remove("is-popping");
+      void kartica.offsetWidth;
+      kartica.classList.add("is-popping");
+    });
+
+    kartica.addEventListener("animationend", (e) => {
+      if (e.animationName === "odskok") kartica.classList.remove("is-popping");
+    });
+  });
+
+  /* ---------- Godina u footeru ---------- */
+  const godina = document.getElementById("godina");
+  if (godina) godina.textContent = new Date().getFullYear();
 })();

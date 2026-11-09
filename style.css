@@ -42,6 +42,22 @@ button:focus-visible {
   border-radius: 4px;
 }
 
+/* sakrivena biblioteka ikonica */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* ==========================================================
    Navbar
    ========================================================== */
@@ -202,9 +218,406 @@ button:focus-visible {
 }
 
 /* ==========================================================
+   Hero
+   ========================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+  min-height: calc(100vh - var(--visina-navbara));
+  padding: 56px 24px 130px;
+  overflow: hidden;
+  scroll-margin-top: var(--visina-navbara-mala);
+  color: #fff;
+  text-align: center;
+
+  /* SLIKA PLAŽE: ubaci images/hero-beach.jpg (ili .jpeg / .png / .webp).
+     Ako je nema, prikazuje se crtež images/hero-beach.svg. */
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.12) 40%, rgba(0, 0, 0, 0.5) 100%),
+    url("images/hero-beach.jpg"),
+    url("images/hero-beach.jpeg"),
+    url("images/hero-beach.png"),
+    url("images/hero-beach.webp"),
+    url("images/hero-beach.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero__title {
+  font-size: clamp(3rem, 9.5vw, 7.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-shadow: 0 6px 32px rgba(0, 0, 0, 0.4);
+}
+
+.hero__subtitle {
+  margin-top: 20px;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 300;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* talas na dnu hero sekcije prelazi u sledeću sekciju */
+.hero__wave {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 80px;
+  fill: var(--boja-svetla);
+}
+
+/* ----- Dugme Rezerviši ----- */
+.hero__cta {
+  padding: 16px 60px;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--boja-teksta);
+  text-decoration: none;
+  background: var(--boja-akcent);
+  border-radius: 999px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  transition: background var(--prelaz), color var(--prelaz), transform var(--prelaz), box-shadow var(--prelaz);
+}
+
+.hero__cta:hover,
+.hero__cta:focus-visible {
+  background: var(--boja-siva);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
+}
+
+.hero__cta:active {
+  transform: translateY(0);
+}
+
+/* ----- Jedna animacija pri učitavanju: naslov pa kartice pa dugme ----- */
+@keyframes izlazak {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero__title,
+.hero__subtitle,
+.cards li,
+.hero__cta {
+  animation: izlazak 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero__title { animation-delay: 0.05s; }
+.hero__subtitle { animation-delay: 0.2s; }
+.cards li:nth-child(1) { animation-delay: 0.4s; }
+.cards li:nth-child(2) { animation-delay: 0.52s; }
+.cards li:nth-child(3) { animation-delay: 0.64s; }
+.hero__cta { animation-delay: 0.9s; }
+
+/* ==========================================================
+   Kartice (flip)
+   ========================================================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 28px;
+  width: 100%;
+  max-width: 1040px;
+  list-style: none;
+}
+
+/* srednja kartica je malo spuštena */
+.cards li:nth-child(2) {
+  margin-top: 36px;
+}
+
+.card {
+  display: block;
+  width: 100%;
+  height: 330px;
+  padding: 0;
+  font: inherit;
+  color: var(--boja-teksta);
+  text-align: left;
+  background: none;
+  border: 0;
+  border-radius: 22px;
+  cursor: pointer;
+  perspective: 1400px;
+}
+
+/* odskok celog kartona pri okretanju */
+.card.is-popping {
+  animation: odskok 0.9s ease;
+}
+
+@keyframes odskok {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.07) translateY(-10px); }
+  100% { transform: scale(1); }
+}
+
+.card__inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  /* mali "preskok" na kraju daje osećaj težine kartice */
+  transition: transform 0.95s cubic-bezier(0.3, 1.25, 0.45, 1);
+}
+
+.card:hover .card__inner {
+  transform: translateY(-6px);
+}
+
+.card.is-flipped .card__inner,
+.card.is-flipped:hover .card__inner {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: box-shadow 0.6s ease;
+}
+
+.card.is-flipped .card__face {
+  box-shadow: 0 26px 50px rgba(0, 0, 0, 0.38);
+}
+
+/* ----- Prednja strana ----- */
+.card__face--front {
+  justify-content: flex-end;
+  background:
+    radial-gradient(130% 55% at 50% 118%, rgba(213, 165, 114, 0.6), transparent 62%),
+    var(--boja-svetla);
+}
+
+.card__badge {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  margin-bottom: auto;
+  background: var(--boja-akcent);
+  border-radius: 50%;
+}
+
+.card__badge .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.card__title {
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.card__hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--boja-siva);
+}
+
+.card__hint .icon {
+  width: 17px;
+  height: 17px;
+  transition: transform 0.6s ease;
+}
+
+.card:hover .card__hint .icon {
+  transform: rotate(180deg);
+}
+
+/* ----- Zadnja strana ----- */
+.card__face--back {
+  justify-content: center;
+  gap: 16px;
+  transform: rotateY(180deg);
+}
+
+.card--sand .card__face--back {
+  background: var(--boja-akcent);
+}
+
+.card--sea .card__face--back {
+  background: var(--boja-svetla);
+  border: 2px solid var(--boja-akcent);
+}
+
+.card__text {
+  position: relative;
+  max-width: 28ch;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.card__watermark {
+  position: absolute;
+  right: -34px;
+  bottom: -38px;
+  width: 150px;
+  height: 150px;
+  color: rgba(0, 0, 0, 0.1);
+  stroke-width: 1.2;
+}
+
+/* opis se pojavljuje tek kad se kartica okrene */
+.card__face--back .card__title,
+.card__face--back .card__text {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card.is-flipped .card__face--back .card__title {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.45s;
+}
+
+.card.is-flipped .card__face--back .card__text {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.6s;
+}
+
+/* ==========================================================
+   Privremene sekcije (obriši kad dodaš pravi sadržaj)
+   ========================================================== */
+.sekcija {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 48px 24px;
+  scroll-margin-top: var(--visina-navbara-mala);
+}
+
+.sekcija--alt {
+  background: var(--boja-svetla);
+}
+
+/* ==========================================================
+   Footer
+   ========================================================== */
+.footer {
+  background: var(--boja-svetla);
+  border-top: 2px solid var(--boja-akcent);
+  scroll-margin-top: var(--visina-navbara-mala);
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.4fr;
+  gap: 48px;
+  max-width: var(--sirina-kontejnera);
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+}
+
+.footer__brand img {
+  display: block;
+  height: 48px;
+  width: auto;
+  margin-bottom: 18px;
+}
+
+.footer__brand p {
+  max-width: 34ch;
+  line-height: 1.6;
+}
+
+.footer__col {
+  font-style: normal;
+}
+
+.footer__heading {
+  margin-bottom: 18px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.footer__links,
+.footer__contact {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+}
+
+.footer__links a,
+.footer__contact a {
+  color: var(--boja-teksta);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--prelaz);
+}
+
+.footer__links a:hover,
+.footer__links a:focus-visible,
+.footer__contact a:hover,
+.footer__contact a:focus-visible {
+  border-bottom-color: var(--boja-akcent);
+}
+
+.footer__contact li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer__ico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: var(--boja-akcent);
+  border-radius: 50%;
+}
+
+.footer__ico .icon {
+  width: 19px;
+  height: 19px;
+}
+
+.footer__copy {
+  padding: 16px 24px;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  background: var(--boja-siva);
+}
+
+/* ==========================================================
    Mobilni
    ========================================================== */
 @media (max-width: 900px) {
+  /* navbar */
   .navbar__inner {
     padding: 0 16px;
   }
@@ -255,22 +668,36 @@ button:focus-visible {
   .navbar__cta::before {
     display: none;
   }
-}
 
-/* ==========================================================
-   Privremene sekcije (obriši kad dodaš pravi sadržaj)
-   ========================================================== */
-.sekcija {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  padding: 48px 24px;
-  scroll-margin-top: var(--visina-navbara-mala);
-}
+  /* hero */
+  .hero {
+    gap: 40px;
+    padding: 56px 16px 120px;
+  }
 
-.sekcija--alt {
-  background: var(--boja-svetla);
+  .hero__wave {
+    height: 56px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .cards li:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .card {
+    height: 270px;
+  }
+
+  /* footer */
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 48px 16px 36px;
+  }
 }
 
 /* ==========================================================
@@ -284,6 +711,14 @@ button:focus-visible {
   *,
   *::before,
   *::after {
+    animation: none !important;
     transition: none !important;
+  }
+
+  /* bez animacije opis se odmah vidi na okrenutoj kartici */
+  .card.is-flipped .card__face--back .card__title,
+  .card.is-flipped .card__face--back .card__text {
+    opacity: 1;
+    transform: none;
   }
 }
