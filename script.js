@@ -60,9 +60,17 @@
   const jeDoDna = () =>
     window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
 
+  // link stranice na kojoj se trenutno nalazimo (npr. "O nama" na o-nama.html)
+  const trenutna = links.find((link) => link.getAttribute("aria-current") === "page");
+  let poslednja = null; // poslednja sekcija koju je posmatrač označio
+  let naDnu = false;    // da li je strana trenutno skrolovana do dna
+
   const oznaciAktivan = (id) => {
+    const postoji = links.some((link) => link.getAttribute("href") === `#${id}`);
     links.forEach((link) => {
-      link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+      // ako nijedna sekcija nije označena, aktivna je link trenutne stranice
+      const aktivan = postoji ? link.getAttribute("href") === `#${id}` : link === trenutna;
+      link.classList.toggle("is-active", aktivan);
     });
   };
 
@@ -72,7 +80,13 @@
         // na dnu strane Kontakt ima prednost (vidi niže)
         if (jeDoDna()) return;
         unosi.forEach((unos) => {
-          if (unos.isIntersecting) oznaciAktivan(unos.target.id);
+          if (unos.isIntersecting) {
+            poslednja = unos.target.id;
+            oznaciAktivan(poslednja);
+          } else if (trenutna) {
+            poslednja = null;
+            oznaciAktivan(null); // izašli smo iz footera
+          }
         });
       },
       // sekcija je "aktivna" kad prelazi sredinu ekrana
@@ -87,7 +101,14 @@
   window.addEventListener(
     "scroll",
     () => {
-      if (jeDoDna()) oznaciAktivan("kontakt");
+      if (jeDoDna()) {
+        naDnu = true;
+        oznaciAktivan("kontakt");
+      } else if (naDnu) {
+        // napustili smo dno: vrati prethodno stanje
+        naDnu = false;
+        oznaciAktivan(poslednja);
+      }
     },
     { passive: true }
   );

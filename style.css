@@ -523,6 +523,300 @@ button:focus-visible {
 }
 
 /* ==========================================================
+   Podstranice: hero
+   ========================================================== */
+.page-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 72px 24px 130px;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* SLIKA: images/o-nama-hero.jpg (ili .jpeg / .png / .webp), inače crtež plaže */
+.page-hero--onama {
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.45) 100%),
+    url("images/o-nama-hero.jpg"),
+    url("images/o-nama-hero.jpeg"),
+    url("images/o-nama-hero.png"),
+    url("images/o-nama-hero.webp"),
+    url("images/hero-beach.svg");
+}
+
+/* SLIKA: images/work-travel-hero.jpg (ili .jpeg / .png / .webp) */
+.page-hero--wat {
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.45) 100%),
+    url("images/work-travel-hero.jpg"),
+    url("images/work-travel-hero.jpeg"),
+    url("images/work-travel-hero.png"),
+    url("images/work-travel-hero.webp"),
+    url("images/hero-beach.svg");
+}
+
+/* ==========================================================
+   O nama: opis levo, slika desno
+   ========================================================== */
+.about {
+  padding: 72px 24px 104px;
+  background: var(--boja-svetla);
+}
+
+.about__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 72px;
+  max-width: var(--sirina-kontejnera);
+  margin: 0 auto;
+}
+
+.about__text h2 {
+  margin-bottom: 28px;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.about__text p {
+  max-width: 62ch;
+  margin-bottom: 18px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.about__photo {
+  aspect-ratio: 4 / 5;
+  border-radius: 22px;
+  box-shadow: 0 22px 48px rgba(103, 108, 108, 0.4);
+  background-color: var(--boja-akcent);
+  background-size: cover;
+  background-position: center;
+  /* SLIKA: images/o-nama.jpg (ili .jpeg / .png / .webp) */
+  background-image:
+    url("images/o-nama.jpg"),
+    url("images/o-nama.jpeg"),
+    url("images/o-nama.png"),
+    url("images/o-nama.webp"),
+    url("images/hero-beach.svg");
+}
+
+/* ==========================================================
+   Ponuda: letovi, trajekti, hoteli
+   ========================================================== */
+.ponuda {
+  padding: 96px 24px 104px;
+  background: #fff;
+  scroll-margin-top: var(--visina-navbara-mala);
+}
+
+.ponuda__head {
+  max-width: 640px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.ponuda__head h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.ponuda__head p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--boja-siva);
+}
+
+.ponuda__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  gap: 28px;
+  max-width: var(--sirina-kontejnera);
+  margin: 0 auto;
+}
+
+.ponuda__kolona {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background: var(--boja-svetla);
+  border-top: 4px solid var(--boja-akcent);
+  border-radius: 22px;
+}
+
+.ponuda__naslov {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.ponuda__ico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  background: var(--boja-akcent);
+  border-radius: 50%;
+}
+
+.ponuda__ico .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.ponuda__lista {
+  flex: 1;
+  margin-bottom: 28px;
+  list-style: none;
+  border-top: 1px solid rgba(103, 108, 108, 0.35);
+}
+
+.ponuda__lista li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(103, 108, 108, 0.35);
+}
+
+.ponuda__stavka {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ponuda__meta {
+  margin-top: 2px;
+  font-size: 15px;
+  color: #3f4343;
+}
+
+.ponuda__cena {
+  flex: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ponuda__btn {
+  display: block;
+  padding: 14px 24px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--boja-teksta);
+  text-decoration: none;
+  background: var(--boja-akcent);
+  border-radius: 999px;
+  transition: background var(--prelaz), color var(--prelaz), transform var(--prelaz);
+}
+
+.ponuda__btn:hover,
+.ponuda__btn:focus-visible {
+  background: var(--boja-siva);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   Work and Travel poziv
+   ========================================================== */
+.wat {
+  padding: 80px 24px;
+  text-align: center;
+  background: var(--boja-akcent);
+}
+
+.wat h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.wat p {
+  max-width: 52ch;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.wat__btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 16px 52px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  background: var(--boja-siva);
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+  transition: background var(--prelaz), transform var(--prelaz);
+}
+
+.wat__btn:hover,
+.wat__btn:focus-visible {
+  background: var(--boja-teksta);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1000px) {
+  .ponuda__grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-hero {
+    min-height: 44vh;
+    padding: 56px 16px 100px;
+  }
+
+  .about {
+    padding: 48px 16px 72px;
+  }
+
+  .about__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .about__photo {
+    aspect-ratio: 16 / 10;
+  }
+
+  .ponuda {
+    padding: 64px 16px 72px;
+  }
+
+  .ponuda__kolona {
+    padding: 24px;
+  }
+
+  .wat {
+    padding: 56px 16px;
+  }
+}
+
+/* ==========================================================
    Footer
    ========================================================== */
 .footer {
