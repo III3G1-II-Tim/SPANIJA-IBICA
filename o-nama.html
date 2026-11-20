@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O nama – Španija Ibica</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ikonice (koriste se preko <use>) -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-avion" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+    <symbol id="i-trajekt" viewBox="0 0 24 24"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.4 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.9 5.3 2.8 7.8"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M12 10v4M12 2v3"/></symbol>
+    <symbol id="i-hotel" viewBox="0 0 24 24"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6M2 18h20"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-tel" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-lokacija" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8"/></symbol>
+  </svg>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <a class="navbar__logo" href="index.html" aria-label="Španija Ibica – početna">
+        <img src="images/spain-logo.svg" alt="Logo Španije" width="72" height="48">
+      </a>
+
+      <button class="navbar__burger" type="button"
+              aria-label="Otvori meni" aria-expanded="false" aria-controls="navbar-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="navbar__menu" id="navbar-menu" aria-label="Glavna navigacija">
+        <ul class="navbar__list">
+          <li><a class="navbar__link" href="index.html">Početna</a></li>
+          <li><a class="navbar__link is-active" href="o-nama.html" aria-current="page">O nama</a></li>
+          <li><a class="navbar__link" href="#kontakt">Kontakt</a></li>
+          <li><a class="navbar__link" href="index.html#recenzije">Recenzije</a></li>
+          <li><a class="navbar__link" href="#login">LogIn</a></li>
+        </ul>
+
+        <a class="navbar__cta" href="https://www.booking.com" target="_blank" rel="noopener noreferrer">
+          Rezerviši
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO =====
+         Slika: ubaci fajl u folder images/ i nazovi ga o-nama-hero.jpg
+         (radi i .jpeg, .png, .webp). Kod ne moraš da menjaš. -->
+    <section class="page-hero page-hero--onama" aria-labelledby="naslov-o-nama">
+      <h1 class="hero__title" id="naslov-o-nama">O nama</h1>
+
+      <svg class="hero__wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 44C220 92 460 4 720 42S1210 84 1440 30V80H0Z"/>
+      </svg>
+    </section>
+
+    <!-- ===== OPIS (levo) + SLIKA (desno) =====
+         Tekst je primer, zameni ga pravim opisom agencije.
+         Slika: images/o-nama.jpg (radi i .jpeg, .png, .webp) -->
+    <section class="about" aria-labelledby="about-naslov">
+      <div class="about__inner">
+
+        <div class="about__text">
+          <h2 id="about-naslov">Putovanje na Ibicu bez komplikacija</h2>
+          <p>
+            Mi smo agencija koja organizuje putovanja na Ibicu. Pomažemo ti da izabereš
+            let, trajekt i smeštaj, tako da sve bude na jednom mestu i da ne gubiš vreme
+            na poređenje desetina sajtova.
+          </p>
+          <p>
+            Bez obzira da li dolaziš na žurku, na miran odmor ili da obiđeš ostrvo,
+            pomažemo oko plana puta i cena koje odgovaraju tvom budžetu.
+          </p>
+          <p>
+            Za sva pitanja javi nam se preko podataka za kontakt na dnu stranice.
+          </p>
+        </div>
+
+        <div class="about__photo" role="img" aria-label="Ibica"></div>
+
+      </div>
+    </section>
+
+    <!-- ===== PONUDA: letovi, trajekti, hoteli =====
+         SVI PODACI U OVOJ SEKCIJI SU PRIMERI. Zameni naslove, opise i cene
+         stvarnom ponudom, a href-ove na dugmadima svojim Booking linkovima. -->
+    <section class="ponuda" id="ponuda" aria-labelledby="ponuda-naslov">
+
+      <div class="ponuda__head">
+        <h2 id="ponuda-naslov">Letovi, trajekti i hoteli</h2>
+        <p>Izaberi kako putuješ i gde ostaješ. Rezervaciju završavaš na Booking-u.</p>
+      </div>
+
+      <div class="ponuda__grid">
+
+        <!-- Letovi -->
+        <article class="ponuda__kolona">
+          <h3 class="ponuda__naslov">
+            <span class="ponuda__ico"><svg class="icon" aria-hidden="true"><use href="#i-avion"/></svg></span>
+            Letovi
+          </h3>
+          <ul class="ponuda__lista">
+            <li>
+              <div>
+                <p class="ponuda__stavka">Beograd – Ibica</p>
+                <p class="ponuda__meta">Povratna karta</p>
+              </div>
+              <span class="ponuda__cena">od 120 €</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Budimpešta – Ibica</p>
+                <p class="ponuda__meta">Povratna karta</p>
+              </div>
+              <span class="ponuda__cena">od 95 €</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Beč – Ibica</p>
+                <p class="ponuda__meta">Povratna karta</p>
+              </div>
+              <span class="ponuda__cena">od 110 €</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Zagreb – Ibica</p>
+                <p class="ponuda__meta">Povratna karta</p>
+              </div>
+              <span class="ponuda__cena">od 130 €</span>
+            </li>
+          </ul>
+          <a class="ponuda__btn" href="https://flights.booking.com" target="_blank" rel="noopener noreferrer">
+            Rezerviši na Booking-u
+          </a>
+        </article>
+
+        <!-- Trajekti -->
+        <article class="ponuda__kolona">
+          <h3 class="ponuda__naslov">
+            <span class="ponuda__ico"><svg class="icon" aria-hidden="true"><use href="#i-trajekt"/></svg></span>
+            Trajekti
+          </h3>
+          <ul class="ponuda__lista">
+            <li>
+              <div>
+                <p class="ponuda__stavka">Barselona – Ibica</p>
+                <p class="ponuda__meta">Putnici i vozila</p>
+              </div>
+              <span class="ponuda__cena">od 60 €</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Valensija – Ibica</p>
+                <p class="ponuda__meta">Putnici i vozila</p>
+              </div>
+              <span class="ponuda__cena">od 55 €</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Denija – Ibica</p>
+                <p class="ponuda__meta">Putnici i vozila</p>
+              </div>
+              <span class="ponuda__cena">od 50 €</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Palma – Ibica</p>
+                <p class="ponuda__meta">Putnici i vozila</p>
+              </div>
+              <span class="ponuda__cena">od 45 €</span>
+            </li>
+          </ul>
+          <!-- Booking ne prodaje trajekte: ovde stavi link ka svom partneru ili ostavi Booking -->
+          <a class="ponuda__btn" href="https://www.booking.com" target="_blank" rel="noopener noreferrer">
+            Rezerviši na Booking-u
+          </a>
+        </article>
+
+        <!-- Hoteli -->
+        <article class="ponuda__kolona">
+          <h3 class="ponuda__naslov">
+            <span class="ponuda__ico"><svg class="icon" aria-hidden="true"><use href="#i-hotel"/></svg></span>
+            Hoteli
+          </h3>
+          <ul class="ponuda__lista">
+            <li>
+              <div>
+                <p class="ponuda__stavka">Hotel Playa Azul</p>
+                <p class="ponuda__meta">4 zvezdice, Sant Antoni</p>
+              </div>
+              <span class="ponuda__cena">od 95 € / noć</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Casa Blanca Resort</p>
+                <p class="ponuda__meta">5 zvezdica, Talamanca</p>
+              </div>
+              <span class="ponuda__cena">od 240 € / noć</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Hostal Mar y Sol</p>
+                <p class="ponuda__meta">2 zvezdice, Ibiza Town</p>
+              </div>
+              <span class="ponuda__cena">od 60 € / noć</span>
+            </li>
+            <li>
+              <div>
+                <p class="ponuda__stavka">Villa Cala Verde</p>
+                <p class="ponuda__meta">Apartmani, Santa Eulalia</p>
+              </div>
+              <span class="ponuda__cena">od 110 € / noć</span>
+            </li>
+          </ul>
+          <a class="ponuda__btn" href="https://www.booking.com/searchresults.html?ss=Ibiza" target="_blank" rel="noopener noreferrer">
+            Rezerviši na Booking-u
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== WORK AND TRAVEL ===== -->
+    <section class="wat" aria-labelledby="wat-naslov">
+      <h2 id="wat-naslov">Radi i putuj</h2>
+      <p>Želiš da zaradiš dok upoznaješ Španiju? Pogledaj naš Work and Travel program.</p>
+      <a class="wat__btn" href="work-and-travel.html">Work and Travel</a>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER / KONTAKT ===== -->
+  <footer class="footer" id="kontakt">
+    <div class="footer__inner">
+
+      <div class="footer__brand">
+        <img src="images/spain-logo.svg" alt="Logo Španije" width="72" height="48">
+        <p>Tvoja agencija za putovanje na Ibicu. Smeštaj, prevoz i saveti za svaki tip odmora.</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Stranice">
+        <h2 class="footer__heading">Stranice</h2>
+        <ul class="footer__links">
+          <li><a href="index.html">Početna</a></li>
+          <li><a href="o-nama.html">O nama</a></li>
+          <li><a href="index.html#recenzije">Recenzije</a></li>
+          <li><a href="#login">LogIn</a></li>
+        </ul>
+      </nav>
+
+      <address class="footer__col">
+        <h2 class="footer__heading">Kontakt</h2>
+        <ul class="footer__contact">
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+            <a href="mailto:info@ibiza-agencija.com">info@ibiza-agencija.com</a>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-tel"/></svg></span>
+            <a href="tel:+381601234567">+381 60 123 4567</a>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-lokacija"/></svg></span>
+            <span>Ibiza, Španija</span>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-insta"/></svg></span>
+            <a href="https://www.instagram.com/ibiza_agencija" target="_blank" rel="noopener noreferrer">@ibiza_agencija</a>
+          </li>
+        </ul>
+      </address>
+
+    </div>
+
+    <p class="footer__copy">© <span id="godina">2026</span> Ibiza Agencija. Sva prava zadržana.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
