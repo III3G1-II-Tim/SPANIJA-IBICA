@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recenzije – Španija Ibica</title>
+
+  <!-- animacije recenzija se uključuju samo kad JavaScript radi -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ikonice (koriste se preko <use>) -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-zvezda" viewBox="0 0 24 24"><path d="M12 2l3.1 6.6 7 .7-5.3 4.7 1.4 7L12 17.5 5.8 21l1.4-7L2 9.3l7-.7z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-tel" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-lokacija" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8"/></symbol>
+  </svg>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <a class="navbar__logo" href="index.html" aria-label="Španija Ibica – početna">
+        <img src="images/spain-logo.svg" alt="Logo Španije" width="72" height="48">
+      </a>
+
+      <button class="navbar__burger" type="button"
+              aria-label="Otvori meni" aria-expanded="false" aria-controls="navbar-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="navbar__menu" id="navbar-menu" aria-label="Glavna navigacija">
+        <ul class="navbar__list">
+          <li><a class="navbar__link" href="index.html">Početna</a></li>
+          <li><a class="navbar__link" href="o-nama.html">O nama</a></li>
+          <li><a class="navbar__link" href="#kontakt">Kontakt</a></li>
+          <li><a class="navbar__link is-active" href="recenzije.html" aria-current="page">Recenzije</a></li>
+          <li><a class="navbar__link" href="#login">LogIn</a></li>
+        </ul>
+
+        <a class="navbar__cta" href="https://www.booking.com" target="_blank" rel="noopener noreferrer">
+          Rezerviši
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO =====
+         Slika: ubaci fajl u folder images/ i nazovi ga recenzije-hero.jpg
+         (radi i .jpeg, .png, .webp). Kod ne moraš da menjaš. -->
+    <section class="page-hero page-hero--recenzije" aria-labelledby="naslov-recenzije">
+      <h1 class="hero__title" id="naslov-recenzije">Recenzije</h1>
+
+      <svg class="hero__wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 44C220 92 460 4 720 42S1210 84 1440 30V80H0Z"/>
+      </svg>
+    </section>
+
+    <!-- ===== KRATAK TEKST O NAMA + SUMA OCENA =====
+         Prosek, broj recenzija i grafikon se računaju iz recenzija ispod. -->
+    <section class="rec-intro" aria-labelledby="rec-intro-naslov">
+      <div class="rec-intro__inner">
+
+        <div class="rec-intro__text">
+          <h2 id="rec-intro-naslov">Iskustva naših gostiju</h2>
+          <p>
+            Mi smo agencija koja organizuje putovanja na Ibicu: letove, trajekte i smeštaj
+            na jednom mestu. Ispod su iskustva ljudi koji su putovali preko nas, onako
+            kako su ih napisali.
+          </p>
+          <p>
+            Nema dva ista putovanja, pa smo recenzije podelili prema tome da li je gost
+            tražio provod, odmor ili obilazak ostrva.
+          </p>
+        </div>
+
+        <div class="sumarno" id="sumarno" aria-label="Zbir ocena">
+          <div class="sumarno__gore">
+            <p class="sumarno__broj" id="sumarno-prosek">–</p>
+            <div>
+              <span class="stars stars--velike" id="sumarno-zvezde" data-ocena="5"></span>
+              <p class="sumarno__ukupno" id="sumarno-ukupno">&nbsp;</p>
+            </div>
+          </div>
+
+          <ul class="bars">
+            <li class="bar" data-ocena="5" style="--i:0"><span class="bar__label">5</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__count">0</span></li>
+            <li class="bar" data-ocena="4" style="--i:1"><span class="bar__label">4</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__count">0</span></li>
+            <li class="bar" data-ocena="3" style="--i:2"><span class="bar__label">3</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__count">0</span></li>
+            <li class="bar" data-ocena="2" style="--i:3"><span class="bar__label">2</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__count">0</span></li>
+            <li class="bar" data-ocena="1" style="--i:4"><span class="bar__label">1</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__count">0</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== RECENZIJE =====
+         SVE RECENZIJE I IMENA SU PRIMERI. Zameni ih stvarnim komentarima.
+         Svaka kartica ima data-ocena (1-5) i data-tip (provod, odmor ili turizam). -->
+    <section class="rec-section" id="sve-recenzije" aria-labelledby="rec-naslov">
+
+      <div class="rec-section__head">
+        <h2 id="rec-naslov">Sve recenzije</h2>
+      </div>
+
+      <div class="filteri" role="group" aria-label="Filter recenzija">
+        <button class="filter" type="button" data-filter="sve" aria-pressed="true">Sve</button>
+        <button class="filter" type="button" data-filter="5" aria-pressed="false">5 zvezdica</button>
+        <button class="filter" type="button" data-filter="provod" aria-pressed="false">Provod</button>
+        <button class="filter" type="button" data-filter="odmor" aria-pressed="false">Odmor</button>
+        <button class="filter" type="button" data-filter="turizam" aria-pressed="false">Turizam</button>
+      </div>
+      <p class="rec-broj" id="rec-broj" aria-live="polite"></p>
+
+      <div class="rec-grid">
+
+        <article class="rec" data-ocena="5" data-tip="provod">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">MP</span>
+            <div>
+              <h3 class="rec__ime">Marko P.</h3>
+              <p class="rec__meta"><time datetime="2026-09">septembar 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="5"></span>
+          <p class="rec__tekst">Noćni život je bio daleko iznad očekivanja. Hotel je bio deset minuta od klubova, a organizacija leta i smeštaja prošla je bez i jednog problema.</p>
+          <div class="rec__foot"><span class="rec__tag">Provod</span><span class="rec__hotel">Hotel Playa Azul</span></div>
+        </article>
+
+        <article class="rec" data-ocena="5" data-tip="odmor">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">JM</span>
+            <div>
+              <h3 class="rec__ime">Jelena M.</h3>
+              <p class="rec__meta"><time datetime="2026-08">avgust 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="5"></span>
+          <p class="rec__tekst">Tiho, čisto i sa pogledom na uvalu. Ujutru kafa na terasi, popodne plaža. Tačno ono što nam je trebalo posle teške godine.</p>
+          <div class="rec__foot"><span class="rec__tag">Odmor</span><span class="rec__hotel">Villa Cala Verde</span></div>
+        </article>
+
+        <article class="rec" data-ocena="4" data-tip="turizam">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">NS</span>
+            <div>
+              <h3 class="rec__ime">Nikola S.</h3>
+              <p class="rec__meta"><time datetime="2026-07">jul 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="4"></span>
+          <p class="rec__tekst">Hostal je jednostavan, ali čist i u samom centru, pa smo sve obišli peške, uključujući Dalt Vilu. Doručak bi mogao da bude bogatiji.</p>
+          <div class="rec__foot"><span class="rec__tag">Turizam</span><span class="rec__hotel">Hostal Mar y Sol</span></div>
+        </article>
+
+        <article class="rec" data-ocena="5" data-tip="odmor">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">AK</span>
+            <div>
+              <h3 class="rec__ime">Ana K.</h3>
+              <p class="rec__meta"><time datetime="2026-09">septembar 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="5"></span>
+          <p class="rec__tekst">Najbolja odluka ove godine. Bazen, spa i osoblje koje se trudi da ti bude lepo. Agencija nam je sredila i transfer sa aerodroma, pa nismo imali nijednu brigu od sletanja do hotela.</p>
+          <div class="rec__foot"><span class="rec__tag">Odmor</span><span class="rec__hotel">Casa Blanca Resort</span></div>
+        </article>
+
+        <article class="rec" data-ocena="5" data-tip="provod">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">SD</span>
+            <div>
+              <h3 class="rec__ime">Stefan D.</h3>
+              <p class="rec__meta"><time datetime="2026-06">jun 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="5"></span>
+          <p class="rec__tekst">Išli smo u grupi od šestoro. Sve je bilo dogovoreno unapred, a kad nam je kasnio let, javili su se i pomerili transfer.</p>
+          <div class="rec__foot"><span class="rec__tag">Provod</span><span class="rec__hotel">Hotel Playa Azul</span></div>
+        </article>
+
+        <article class="rec" data-ocena="4" data-tip="turizam">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">MT</span>
+            <div>
+              <h3 class="rec__ime">Milica T.</h3>
+              <p class="rec__meta"><time datetime="2026-10">oktobar 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="4"></span>
+          <p class="rec__tekst">Divno ostrvo za šetnju, pijace i ribarska sela. Jedino što bih promenila je izbor trajekta, na našoj liniji je bila velika gužva.</p>
+          <div class="rec__foot"><span class="rec__tag">Turizam</span><span class="rec__hotel">Villa Cala Verde</span></div>
+        </article>
+
+        <article class="rec" data-ocena="5" data-tip="provod">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">LV</span>
+            <div>
+              <h3 class="rec__ime">Luka V.</h3>
+              <p class="rec__meta"><time datetime="2026-08">avgust 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="5"></span>
+          <p class="rec__tekst">Zalazak sunca uz DJ set na plaži je nešto što se pamti. Hvala na savetu gde da idemo.</p>
+          <div class="rec__foot"><span class="rec__tag">Provod</span><span class="rec__hotel">Casa Blanca Resort</span></div>
+        </article>
+
+        <article class="rec" data-ocena="5" data-tip="turizam">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">TR</span>
+            <div>
+              <h3 class="rec__ime">Teodora R.</h3>
+              <p class="rec__meta"><time datetime="2026-05">maj 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="5"></span>
+          <p class="rec__tekst">Za nedelju dana obišla sam stari grad, tržnice i tri plaže. Predlozi agencije su mi uštedeli puno vremena.</p>
+          <div class="rec__foot"><span class="rec__tag">Turizam</span><span class="rec__hotel">Hostal Mar y Sol</span></div>
+        </article>
+
+        <article class="rec" data-ocena="3" data-tip="odmor">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">ĐB</span>
+            <div>
+              <h3 class="rec__ime">Đorđe B.</h3>
+              <p class="rec__meta"><time datetime="2026-09">septembar 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="3"></span>
+          <p class="rec__tekst">Smeštaj je u redu, ali je soba bila bučnija nego što smo očekivali jer je hotel blizu klubova. Za miran odmor birajte drugu lokaciju.</p>
+          <div class="rec__foot"><span class="rec__tag">Odmor</span><span class="rec__hotel">Hotel Playa Azul</span></div>
+        </article>
+
+        <article class="rec" data-ocena="5" data-tip="odmor">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">IL</span>
+            <div>
+              <h3 class="rec__ime">Ivana L.</h3>
+              <p class="rec__meta"><time datetime="2026-07">jul 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="5"></span>
+          <p class="rec__tekst">Sa decom smo uživali u plitkim uvalama. Apartman je imao sve što nam treba, a domaćini su nas dočekali sa vodom i voćem.</p>
+          <div class="rec__foot"><span class="rec__tag">Odmor</span><span class="rec__hotel">Villa Cala Verde</span></div>
+        </article>
+
+        <article class="rec" data-ocena="4" data-tip="provod">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">FN</span>
+            <div>
+              <h3 class="rec__ime">Filip N.</h3>
+              <p class="rec__meta"><time datetime="2026-06">jun 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="4"></span>
+          <p class="rec__tekst">Odlična cena za ono što se dobije. Spavali smo malo, ali to je i bila poenta putovanja.</p>
+          <div class="rec__foot"><span class="rec__tag">Provod</span><span class="rec__hotel">Hostal Mar y Sol</span></div>
+        </article>
+
+        <article class="rec" data-ocena="5" data-tip="turizam">
+          <header class="rec__head">
+            <span class="rec__avatar" aria-hidden="true">SJ</span>
+            <div>
+              <h3 class="rec__ime">Sara J.</h3>
+              <p class="rec__meta"><time datetime="2026-10">oktobar 2026</time></p>
+            </div>
+          </header>
+          <span class="stars" data-ocena="5"></span>
+          <p class="rec__tekst">Rezervacija je bila jednostavna, cene jasne i bez skrivenih troškova. Sigurno ćemo opet.</p>
+          <div class="rec__foot"><span class="rec__tag">Turizam</span><span class="rec__hotel">Casa Blanca Resort</span></div>
+        </article>
+
+      </div>
+
+      <p class="rec-prazno" id="rec-prazno" hidden>Nema recenzija za izabrani filter. Izaberi neki drugi.</p>
+
+    </section>
+
+    <!-- ===== POZIV NA REZERVACIJU ===== -->
+    <section class="cta-band" aria-labelledby="cta-naslov">
+      <h2 id="cta-naslov">Budi sledeći gost</h2>
+      <p>Rezerviši let, trajekt ili smeštaj, a kad se vratiš, javi nam kako ti je bilo.</p>
+      <a class="cta-band__btn" href="https://www.booking.com" target="_blank" rel="noopener noreferrer">Rezerviši</a>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER / KONTAKT ===== -->
+  <footer class="footer" id="kontakt">
+    <div class="footer__inner">
+
+      <div class="footer__brand">
+        <img src="images/spain-logo.svg" alt="Logo Španije" width="72" height="48">
+        <p>Tvoja agencija za putovanje na Ibicu. Smeštaj, prevoz i saveti za svaki tip odmora.</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Stranice">
+        <h2 class="footer__heading">Stranice</h2>
+        <ul class="footer__links">
+          <li><a href="index.html">Početna</a></li>
+          <li><a href="o-nama.html">O nama</a></li>
+          <li><a href="recenzije.html">Recenzije</a></li>
+          <li><a href="#login">LogIn</a></li>
+        </ul>
+      </nav>
+
+      <address class="footer__col">
+        <h2 class="footer__heading">Kontakt</h2>
+        <ul class="footer__contact">
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+            <a href="mailto:info@ibiza-agencija.com">info@ibiza-agencija.com</a>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-tel"/></svg></span>
+            <a href="tel:+381601234567">+381 60 123 4567</a>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-lokacija"/></svg></span>
+            <span>Ibiza, Španija</span>
+          </li>
+          <li>
+            <span class="footer__ico"><svg class="icon" aria-hidden="true"><use href="#i-insta"/></svg></span>
+            <a href="https://www.instagram.com/ibiza_agencija" target="_blank" rel="noopener noreferrer">@ibiza_agencija</a>
+          </li>
+        </ul>
+      </address>
+
+    </div>
+
+    <p class="footer__copy">© <span id="godina">2026</span> Ibiza Agencija. Sva prava zadržana.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
