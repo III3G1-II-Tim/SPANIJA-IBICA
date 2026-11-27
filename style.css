@@ -523,6 +523,300 @@ button:focus-visible {
 }
 
 /* ==========================================================
+   Podstranice: hero
+   ========================================================== */
+.page-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 72px 24px 130px;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* SLIKA: images/o-nama-hero.jpg (ili .jpeg / .png / .webp), inače crtež plaže */
+.page-hero--onama {
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.45) 100%),
+    url("images/o-nama-hero.jpg"),
+    url("images/o-nama-hero.jpeg"),
+    url("images/o-nama-hero.png"),
+    url("images/o-nama-hero.webp"),
+    url("images/hero-beach.svg");
+}
+
+/* SLIKA: images/work-travel-hero.jpg (ili .jpeg / .png / .webp) */
+.page-hero--wat {
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.45) 100%),
+    url("images/work-travel-hero.jpg"),
+    url("images/work-travel-hero.jpeg"),
+    url("images/work-travel-hero.png"),
+    url("images/work-travel-hero.webp"),
+    url("images/hero-beach.svg");
+}
+
+/* ==========================================================
+   O nama: opis levo, slika desno
+   ========================================================== */
+.about {
+  padding: 72px 24px 104px;
+  background: var(--boja-svetla);
+}
+
+.about__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 72px;
+  max-width: var(--sirina-kontejnera);
+  margin: 0 auto;
+}
+
+.about__text h2 {
+  margin-bottom: 28px;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.about__text p {
+  max-width: 62ch;
+  margin-bottom: 18px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.about__photo {
+  aspect-ratio: 4 / 5;
+  border-radius: 22px;
+  box-shadow: 0 22px 48px rgba(103, 108, 108, 0.4);
+  background-color: var(--boja-akcent);
+  background-size: cover;
+  background-position: center;
+  /* SLIKA: images/o-nama.jpg (ili .jpeg / .png / .webp) */
+  background-image:
+    url("images/o-nama.jpg"),
+    url("images/o-nama.jpeg"),
+    url("images/o-nama.png"),
+    url("images/o-nama.webp"),
+    url("images/hero-beach.svg");
+}
+
+/* ==========================================================
+   Ponuda: letovi, trajekti, hoteli
+   ========================================================== */
+.ponuda {
+  padding: 96px 24px 104px;
+  background: #fff;
+  scroll-margin-top: var(--visina-navbara-mala);
+}
+
+.ponuda__head {
+  max-width: 640px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.ponuda__head h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.ponuda__head p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--boja-siva);
+}
+
+.ponuda__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  gap: 28px;
+  max-width: var(--sirina-kontejnera);
+  margin: 0 auto;
+}
+
+.ponuda__kolona {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background: var(--boja-svetla);
+  border-top: 4px solid var(--boja-akcent);
+  border-radius: 22px;
+}
+
+.ponuda__naslov {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.ponuda__ico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  background: var(--boja-akcent);
+  border-radius: 50%;
+}
+
+.ponuda__ico .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.ponuda__lista {
+  flex: 1;
+  margin-bottom: 28px;
+  list-style: none;
+  border-top: 1px solid rgba(103, 108, 108, 0.35);
+}
+
+.ponuda__lista li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(103, 108, 108, 0.35);
+}
+
+.ponuda__stavka {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ponuda__meta {
+  margin-top: 2px;
+  font-size: 15px;
+  color: #3f4343;
+}
+
+.ponuda__cena {
+  flex: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ponuda__btn {
+  display: block;
+  padding: 14px 24px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--boja-teksta);
+  text-decoration: none;
+  background: var(--boja-akcent);
+  border-radius: 999px;
+  transition: background var(--prelaz), color var(--prelaz), transform var(--prelaz);
+}
+
+.ponuda__btn:hover,
+.ponuda__btn:focus-visible {
+  background: var(--boja-siva);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   Work and Travel poziv
+   ========================================================== */
+.cta-band {
+  padding: 80px 24px;
+  text-align: center;
+  background: var(--boja-akcent);
+}
+
+.cta-band h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cta-band p {
+  max-width: 52ch;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.cta-band__btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 16px 52px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  background: var(--boja-siva);
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+  transition: background var(--prelaz), transform var(--prelaz);
+}
+
+.cta-band__btn:hover,
+.cta-band__btn:focus-visible {
+  background: var(--boja-teksta);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1000px) {
+  .ponuda__grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-hero {
+    min-height: 44vh;
+    padding: 56px 16px 100px;
+  }
+
+  .about {
+    padding: 48px 16px 72px;
+  }
+
+  .about__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .about__photo {
+    aspect-ratio: 16 / 10;
+  }
+
+  .ponuda {
+    padding: 64px 16px 72px;
+  }
+
+  .ponuda__kolona {
+    padding: 24px;
+  }
+
+  .cta-band {
+    padding: 56px 16px;
+  }
+}
+
+/* ==========================================================
    Footer
    ========================================================== */
 .footer {
@@ -720,5 +1014,425 @@ button:focus-visible {
   .card.is-flipped .card__face--back .card__text {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ==========================================================
+   O nama: link ka recenzijama
+   ========================================================== */
+.about__link {
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+  padding-bottom: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--boja-teksta);
+  text-decoration: none;
+}
+
+.about__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--boja-akcent);
+  transform-origin: left;
+  transition: transform var(--prelaz);
+}
+
+.about__link:hover::after,
+.about__link:focus-visible::after {
+  transform: scaleX(0.35);
+}
+
+/* ==========================================================
+   Recenzije: hero
+   ========================================================== */
+/* SLIKA: images/recenzije-hero.jpg (ili .jpeg / .png / .webp) */
+.page-hero--recenzije {
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.45) 100%),
+    url("images/recenzije-hero.jpg"),
+    url("images/recenzije-hero.jpeg"),
+    url("images/recenzije-hero.png"),
+    url("images/recenzije-hero.webp"),
+    url("images/hero-beach.svg");
+}
+
+/* ==========================================================
+   Zvezdice
+   ========================================================== */
+.stars {
+  display: inline-flex;
+  gap: 3px;
+  color: var(--boja-akcent);
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: none;
+}
+
+.star--prazna {
+  color: var(--boja-siva);
+  opacity: 0.3;
+}
+
+.stars--velike .star {
+  width: 28px;
+  height: 28px;
+}
+
+/* ==========================================================
+   Recenzije: kratak tekst + zbir ocena
+   ========================================================== */
+.rec-intro {
+  padding: 72px 24px 104px;
+  background: var(--boja-svetla);
+}
+
+.rec-intro__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 72px;
+  max-width: var(--sirina-kontejnera);
+  margin: 0 auto;
+}
+
+.rec-intro__text h2 {
+  margin-bottom: 24px;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.rec-intro__text p {
+  max-width: 58ch;
+  margin-bottom: 16px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.sumarno {
+  padding: 36px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 22px 48px rgba(103, 108, 108, 0.35);
+}
+
+.sumarno__gore {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.sumarno__broj {
+  min-width: 2.4ch;
+  font-size: clamp(3.8rem, 7vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sumarno__ukupno {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #3f4343;
+}
+
+.bars {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 16px 1fr 28px;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.bar__count {
+  text-align: right;
+  color: #3f4343;
+}
+
+.bar__track {
+  height: 10px;
+  overflow: hidden;
+  background: var(--boja-svetla);
+  border-radius: 999px;
+}
+
+.bar__fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--boja-akcent);
+  border-radius: inherit;
+  transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(0.3s + var(--i) * 120ms);
+}
+
+.sumarno.is-in .bar__fill {
+  width: var(--udeo, 0%);
+}
+
+/* ==========================================================
+   Recenzije: filteri
+   ========================================================== */
+.rec-section {
+  padding: 96px 24px 104px;
+  background: #fff;
+  scroll-margin-top: var(--visina-navbara-mala);
+}
+
+.rec-section__head {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.rec-section__head h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.filteri {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.filter {
+  padding: 10px 24px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--boja-teksta);
+  cursor: pointer;
+  background: var(--boja-svetla);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  transition: background var(--prelaz), border-color var(--prelaz), transform 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.filter:hover {
+  border-color: var(--boja-akcent);
+}
+
+.filter:active {
+  transform: scale(0.95);
+}
+
+.filter[aria-pressed="true"] {
+  font-weight: 600;
+  background: var(--boja-akcent);
+  border-color: var(--boja-akcent);
+}
+
+.rec-broj {
+  min-height: 1.5em;
+  margin-bottom: 40px;
+  font-size: 15px;
+  text-align: center;
+  color: #3f4343;
+}
+
+.rec-prazno {
+  margin-top: 8px;
+  text-align: center;
+  color: #3f4343;
+}
+
+/* ==========================================================
+   Recenzije: kartice
+   ========================================================== */
+.rec-grid {
+  column-count: 3;
+  column-gap: 24px;
+  max-width: var(--sirina-kontejnera);
+  margin: 0 auto;
+}
+
+.rec {
+  position: relative;
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 24px;
+  padding: 28px;
+  background: var(--boja-svetla);
+  border-top: 4px solid var(--boja-akcent);
+  border-radius: 22px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.rec::before {
+  content: "\201C";
+  position: absolute;
+  top: 8px;
+  right: 22px;
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(213, 165, 114, 0.55);
+  pointer-events: none;
+}
+
+.rec:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 36px rgba(103, 108, 108, 0.3);
+}
+
+.rec__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.rec__avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 700;
+  background: var(--boja-akcent);
+  border-radius: 50%;
+}
+
+.rec__ime {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.rec__meta {
+  font-size: 14px;
+  color: #3f4343;
+}
+
+.rec__tekst {
+  margin: 14px 0 20px;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.rec__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.rec__tag {
+  padding: 4px 14px;
+  font-weight: 500;
+  background: #fff;
+  border-radius: 999px;
+}
+
+.rec__hotel {
+  color: #3f4343;
+}
+
+/* ----- Animacije (samo kad radi JavaScript) ----- */
+.js .rec {
+  opacity: 0;
+}
+
+.js .rec.is-in {
+  opacity: 1;
+  animation: rec-ulaz 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes rec-ulaz {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+  }
+}
+
+/* zvezdice iskaču jedna za drugom kad se kartica pojavi */
+.js .rec.is-in .star {
+  animation: zvezda-ulaz 0.5s cubic-bezier(0.3, 1.7, 0.5, 1) backwards;
+  animation-delay: calc(var(--d, 0s) + 0.35s + var(--i) * 80ms);
+}
+
+@keyframes zvezda-ulaz {
+  from {
+    opacity: 0;
+    transform: scale(0.1) rotate(-60deg);
+  }
+}
+
+.js .sumarno .star {
+  opacity: 0;
+}
+
+.js .sumarno.is-in .star {
+  opacity: 1;
+  animation: zvezda-ulaz 0.5s cubic-bezier(0.3, 1.7, 0.5, 1) backwards;
+  animation-delay: calc(0.2s + var(--i) * 90ms);
+}
+
+.js .sumarno.is-in .star--prazna {
+  opacity: 0.3;
+}
+
+/* ==========================================================
+   Recenzije: mobilni
+   ========================================================== */
+@media (max-width: 1000px) {
+  .rec-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .rec-intro {
+    padding: 48px 16px 72px;
+  }
+
+  .rec-intro__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .sumarno {
+    padding: 28px 24px;
+  }
+
+  .rec-section {
+    padding: 64px 16px 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  .rec-grid {
+    column-count: 1;
+  }
+
+  .sumarno__gore {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 }
